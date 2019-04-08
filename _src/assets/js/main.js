@@ -5,13 +5,17 @@ const counterBox = document.querySelector('.counter');
 const guess = document.querySelector('.guess');
 const button = document.querySelector('.button');
 const message = document.querySelector('.message');
-
-
+const secretMessage = document.querySelector('.secret-message');
+const secretButton = document.querySelector('.secret-button');
+let counter = 0;
 
 //function - random number (randNum)
-function randNum(max) {
+const randNum = max => {
     return Math.ceil(Math.random() * max);
   }
+//(save a random number in a constant to compare)
+let rndm = randNum(100);
+console.log('random number:' + rndm);
 
 //function get guess and print to console
 //compare guess to random number 
@@ -24,22 +28,31 @@ function compareGuess(){
     if (guessInt === rndm) {
         message.innerHTML = `¡HAS
         GANADO, CAMPEONA!`;
+        secretMessage.innerHTML = 'Quieres intentar otra vez?';
+        secretButton.classList.remove('hidden');
     }
     else if (guessInt < rndm) {
         message.innerHTML = 'Demasiado bajo :(';
     }
-    else if (guessInt > rndm) {
+    else {
         message.innerHTML = 'Demasiado alto :(';
     }
     counter++;
     counterBox.innerHTML = counter;
 } 
 
-//add listeners
-//(save a random number in a constant to compare)
-const rndm = randNum(100);
-console.log('random number:' + rndm);
+//function to reset the game
+const reset = () => {
+    counter = 0;
+    counterBox.innerHTML = counter;
+    secretButton.classList.add('hidden');
+    secretMessage.classList.add('hidden');
+    rndm = randNum(100);
+    console.log('random number:' + rndm);
+    guess.value = 0;
+};
 
-let counter = 0;
+//add listeners
 
 button.addEventListener('click', compareGuess);
+secretButton.addEventListener('click', reset);

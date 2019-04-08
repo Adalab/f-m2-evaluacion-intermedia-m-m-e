@@ -35,6 +35,10 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	@media all and (max-width: 500px){
+		top: 85px;
+		right: 30px;
+	}
 }
 
 .form {
@@ -65,4 +69,8 @@ body {
 	border: 1px solid blue;
 	text-align: center;
 	color: blue;
+}
+
+.hidden {
+	display: none;
 }
