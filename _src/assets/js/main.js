@@ -27,11 +27,11 @@ function compareGuess(){
         correct = true;
     }
     else if (guessInt < rndm) {
-        message.innerHTML = 'demasiado bajo';
+        message.innerHTML = 'Demasiado bajo';
         correct = false;
     }
     else if (guessInt > rndm) {
-        message.innerHTML = 'demasiado alto';
+        message.innerHTML = 'Demasiado alto';
         correct = false;
     }
 }
