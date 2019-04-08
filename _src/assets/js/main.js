@@ -16,7 +16,7 @@ function randNum(max) {
 //function get guess and print to console
 //compare guess to random number 
 //then print a message on the screen (too high/too low/correct)
-let correct = false;
+//keep count of number of attempts
 
 function compareGuess(){
     const guessInt = parseInt(guess.value);
@@ -24,19 +24,13 @@ function compareGuess(){
     if (guessInt === rndm) {
         message.innerHTML = `¡HAS
         GANADO, CAMPEONA!`;
-        correct = true;
     }
     else if (guessInt < rndm) {
-        message.innerHTML = 'Demasiado bajo';
-        correct = false;
+        message.innerHTML = 'Demasiado bajo :(';
     }
     else if (guessInt > rndm) {
-        message.innerHTML = 'Demasiado alto';
-        correct = false;
+        message.innerHTML = 'Demasiado alto :(';
     }
-}
-// function - keep count of number of attempts
-function countGuess() {
     counter++;
     counterBox.innerHTML = counter;
 } 
@@ -49,4 +43,3 @@ console.log('random number:' + rndm);
 let counter = 0;
 
 button.addEventListener('click', compareGuess);
-button.addEventListener('click', countGuess);
