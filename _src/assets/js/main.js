@@ -1,7 +1,7 @@
 'use strict';
 
 //constants
-const counter = document.querySelector('.counter');
+const counterBox = document.querySelector('.counter');
 const guess = document.querySelector('.guess');
 const button = document.querySelector('.button');
 const message = document.querySelector('.message');
@@ -16,6 +16,7 @@ function randNum(max) {
 //function get guess and print to console
 //compare guess to random number 
 //then print a message on the screen (too high/too low/correct)
+// keep count of number of attempts
 
 function compareGuess(){
     const guessInt = parseInt(guess.value);
@@ -31,9 +32,15 @@ function compareGuess(){
     else if (guessInt > rndm) {
         message.innerHTML = 'demasiado alto';
     }
+    let counter = 0;
+    console.log('counter: ' + counter);
+    counterBox.innerHTML = counter;
+    // for (let i = 0; guessInt !== rndm;i++) {
+    //     counter++;
+    //     counterBox.innerHTML = counter;
+    // }
 }
 
-//function - keep count of number of attempts
 
 //add listeners
 //(save a random number in a constant to compare)
