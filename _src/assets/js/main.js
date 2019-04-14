@@ -17,26 +17,43 @@ const randNum = max => {
 let rndm = randNum(100);
 console.log('random number:' + rndm);
 
-//function get guess and print to console
-//compare guess to random number 
+//function get guess and print to console,compare guess to random number 
 //then print a message on the screen (too high/too low/correct)
-//keep count of number of attempts
 
 function compareGuess(){
     const guessInt = parseInt(guess.value);
     console.log('guess: ' + guessInt);
     if (guessInt === rndm) {
-        message.innerHTML = `¡HAS
-        GANADO, CAMPEONA!`;
-        secretMessage.innerHTML = 'Quieres intentar otra vez?';
+        printMessage(message, `¡HAS GANADO, CAMPEONA!`);
+        printMessage(secretMessage, 'Quieres intentar otra vez?');
         secretButton.classList.remove('hidden');
     }
     else if (guessInt < rndm) {
-        message.innerHTML = 'Demasiado bajo :(';
+        if (guessInt < 1) {
+            printMessage(message, 'Por favor, escribe un número entre 1 y 100');
+        } else {
+            printMessage(message, `Demasiado bajo :(`);
+        }
+    }
+    else if (guessInt > rndm) {
+        if (guessInt > 100) {
+            printMessage(message, 'Por favor, escribe un número entre 1 y 100');
+        } else {
+            printMessage(message, `Demasiado alto :(`);
+        }
     }
     else {
-        message.innerHTML = 'Demasiado alto :(';
+        printMessage(message, 'Por favor, escribe un número entre 1 y 100');
     }
+} 
+
+//function - print to message.innerHTML
+const printMessage = (element, string) =>  {
+    element.innerHTML = string;
+}
+
+//function  - keep count of number of attempts
+const countGuess = () => {
     counter++;
     counterBox.innerHTML = counter;
 } 
@@ -52,7 +69,18 @@ const reset = () => {
     guess.value = 0;
 };
 
+//add handler
+const guessHandler = () => {
+    compareGuess();
+    countGuess();
+}
+
 //add listeners
 
-button.addEventListener('click', compareGuess);
+button.addEventListener('click', guessHandler);
+guess.addEventListener('keyup',function(e){
+    if (e.keyCode === 13) {
+    guessHandler();
+  }
+});
 secretButton.addEventListener('click', reset);
